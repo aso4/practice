@@ -1,7 +1,7 @@
 public class BubbleSort {
 
     public void example (){
-        int[] array = {1, 2, 3, 4, 5};
+        int[] array = {5, 4, 2, 1, 3};
 
 
         for (int i = 0; i <= array.length - 2; i++) {
