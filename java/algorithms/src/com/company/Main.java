@@ -7,5 +7,8 @@ public class Main {
 
         SelectionSort s = new SelectionSort();
         // s.example();
+
+        InsertionSort i = new InsertionSort();
+        i.example();
     }
 }
