@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by albertso on 4/7/17.
  */
-public class RPC {
+public class RPS {
     public static String rps(String p1, String p2) {
         // assign p1 to int values. rock = 0 paper 1 scissors 2
         int p1int = -50;
@@ -36,3 +36,11 @@ public class RPC {
         // otherwise return p2
     }
 }
+
+// elegant solution
+//public static String rps(String p1, String p2) {
+//    if (p1.equals(p2)) return "Draw!";
+//    String result = p1 + p2;
+//    int winner = "scissorspaper".equals(result) || "rockscissors".equals(result) || "paperrock".equals(result) ? 1 : 2;
+//    return String.format("Player %d won!", winner);
+//}
