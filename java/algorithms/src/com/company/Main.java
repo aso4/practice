@@ -9,6 +9,7 @@ public class Main {
         // s.example();
 
         InsertionSort i = new InsertionSort();
-        i.example();
+        // i.example();
+
     }
 }
