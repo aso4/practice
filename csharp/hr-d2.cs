@@ -1,30 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 class Solution {
-
     static void Main(String[] args) {
-        int N = Convert.ToInt32(Console.ReadLine());
+        double mealCost;
+        int tipPercent;
+        int taxPercent;
+        double sum;
+        string str;
 
-        if(N%2 == 0)
-        {
-            if(N > 20)
-            {
-                Console.Write("Not Weird");
-            }
-            else if(N >= 6 && N <= 20)
-            {
-                Console.Write("Weird");
-            }
-            else if(N >= 2 && N <= 5)
-            {
-                Console.Write("Not Weird");
-            }
-        }
-        else
-        {
-            Console.Write("Weird");
-        }
+        mealCost = double.Parse(Console.ReadLine());
+        tipPercent = int.Parse(Console.ReadLine());
+        taxPercent = int.Parse(Console.ReadLine());
+
+        sum = Math.Round(mealCost + mealCost*Convert.ToDouble(tipPercent)/Convert.ToDouble(100) + mealCost*Convert.ToDouble(taxPercent)/100);
+        str = String.Format("The total meal cost is {0} dollars.", sum);
+        Console.Write(str);
     }
 }
