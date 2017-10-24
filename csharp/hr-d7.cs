@@ -1,30 +1,30 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
 class Solution {
     static void Main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
-        int n = Convert.ToInt32(Console.ReadLine());
-        Dictionary<string, string> phonebook = new Dictionary<string, string>();
-        List<string> names = new List<string>();
+        int n;
+        string input, name, phoneNum;
 
-        for (int i = 0; i < n; i++) {
-            string line = Console.ReadLine();
-            int index = line.IndexOf(" ");
-            phonebook.Add(line.Substring(0, index), line.Substring(index + 1, 8));
+        n = Convert.ToInt32(Console.ReadLine());
+        Dictionary<string, string> phoneBook = new Dictionary<string, string>();
+
+        for(int index = 0; index < n; ++index)
+        {
+            input = Console.ReadLine();
+            string[] keyAndValue = input.Split(' ');
+            name = keyAndValue[0];
+            phoneNum = keyAndValue[1];
+            phoneBook.Add(name, phoneNum);
         }
 
-        for (int i = 0; i < n; i++) {
-            names.Add(Console.ReadLine());
-        }
-
-        foreach(KeyValuePair<string, string> item in phonebook) {
-            if (names.Contains(item.Key)) {
-                Console.WriteLine(item.Key + "=" + item.Value);
-            } else {
+        for(int index = 0; index < n; ++index)
+        {
+            name = Console.ReadLine();
+            if(phoneBook.ContainsKey(name) == true)
+                Console.WriteLine("{0}={1}",name, phoneBook[name]);
+            else
                 Console.WriteLine("Not found");
-            }
         }
     }
 }
