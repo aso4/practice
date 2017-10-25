@@ -5,18 +5,10 @@ using System.Linq;
 class Solution {
 
     static int factorial(int n) {
-        int result;
-        
         if (n == 1) {
             return 1;
-        } else {
-            for (int i = n; i > 0; i--) {
-                result = i * n;
-            }
-            // result = n * factorial(n--);
-            // Console.WriteLine("result: " + result);
         }
-        return result;
+        return n * factorial(n-1);
     }
 
     static void Main(String[] args) {
