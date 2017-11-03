@@ -22,42 +22,100 @@ public class PerimeterAssignmentRunner {
 
         for (int i = 0; i < l.size()-1; i++) {
             if (i == 0) {
-                System.out.println(l.get(0).getClass());
+                // System.out.println(l.get(0).getClass());
                 totalLength += l.get(0).distance(l.get(l.size()-1));
             }
             totalLength += l.get(i).distance(l.get(i+1));
         }
 
-        return totalLength/l.size();
+        return totalLength/l.size(); // totalLength/l.size
+    }
+
+    public double getTotalLength(Shape s) {
+        double totalLength = 0;
+        List<Point> l = new ArrayList<Point>();
+        for (Point p : s.getPoints()) {
+            l.add(p);
+        }
+
+        for (int i = 0; i < l.size()-1; i++) {
+            if (i == 0) {
+                totalLength += l.get(0).distance(l.get(l.size()-1));
+            }
+            totalLength += l.get(i).distance(l.get(i+1));
+        }
+
+        return totalLength;
     }
 
     public double getLargestSide(Shape s) {
-        // Put code here
-        return 0.0;
+        double largestSide = 0;
+        List<Point> l = new ArrayList<Point>();
+        for (Point p : s.getPoints()) {
+            l.add(p);
+        }
+        largestSide = l.get(0).distance(l.get(l.size()-1));
+        // System.out.println("largestSide: " + largestSide);
+        // System.out.println("l.size: " + l.size());
+        for (int i = 0; i < l.size()-1; i++) {
+            // System.out.println("i: " + i);
+            if (largestSide < l.get(i).distance(l.get(i+1))) {
+                largestSide = l.get(i).distance(l.get(i+1));
+                // System.out.println("new largestSide: " + largestSide);
+            }
+
+        }
+        return largestSide;
     }
 
     public double getLargestX(Shape s) {
-        // Put code here
-        return 0.0;
+        double largestX = 0.0;
+        for (Point p : s.getPoints()) {
+            if (p.getX() > largestX) {
+                largestX = p.getX();
+            }
+        }
+        return largestX;
     }
 
     public double getLargestPerimeterMultipleFiles() {
-        // Put code here
-        return 0.0;
+        double largestPerimeter = 0;
+        DirectoryResource dr = new DirectoryResource();
+        for (File f : dr.selectedFiles()) {
+             FileResource fr = new FileResource(f);
+             Shape fileShape = new Shape(fr);
+             if (getTotalLength(fileShape) > largestPerimeter) {
+                 largestPerimeter = getTotalLength(fileShape);
+             }
+             System.out.println("perimeter " + f.getName() + ": " + getTotalLength(fileShape));
+        }
+        return largestPerimeter;
     }
 
     public String getFileWithLargestPerimeter() {
-        // Put code here
-        File temp = null;    // replace this code
+        double largestPerimeter = 0;
+        File temp = null;
+
+        DirectoryResource dr = new DirectoryResource();
+        for (File f : dr.selectedFiles()) {
+             FileResource fr = new FileResource(f);
+             Shape fileShape = new Shape(fr);
+             if (getAverageLength(fileShape)*getNumPoints(fileShape) > largestPerimeter) {
+                 temp = f;
+             }
+        }
+
         return temp.getName();
     }
 
     public void testPerimeterMultipleFiles() {
         // Put code here
+        System.out.println(getLargestPerimeterMultipleFiles());
     }
 
     public void testFileWithLargestPerimeter() {
         // Put code here
+        System.out.println(getFileWithLargestPerimeter());
     }
 
     // This method creates a triangle that you can use to test your other methods
@@ -82,13 +140,21 @@ public class PerimeterAssignmentRunner {
     }
 
     public void testPerimeter() {
-        // PerimeterAssignmentRunner p = new PerimeterAssignmentRunner();
-        FileResource fr = new FileResource("example1.txt");
-        Shape example1 = new Shape(fr);
-        // triangle.addPoint(new Point(0,0));
-        // triangle.addPoint(new Point(6,0));
-        // triangle.addPoint(new Point(3,6));
-        System.out.println(getAverageLength(example1));
+        FileResource f1 = new FileResource("datatest4.txt");
+        Shape temp1 = new Shape(f1);
+        System.out.println("1. " + getTotalLength(temp1));
+
+        FileResource f2 = new FileResource("datatest1.txt");
+        Shape tempShape = new Shape(f2);
+        System.out.println("2. " + getAverageLength(tempShape));
+
+        FileResource f3 = new FileResource("datatest4.txt");
+        Shape temp3 = new Shape(f3);
+        System.out.println("3. " + getLargestSide(temp3));
+
+        // FileResource f4 = new FileResource("datatest4.txt");
+        // Shape temp4 = new Shape(f4);
+        // System.out.println("4. " + getLargestSide(temp4));
     }
 
     public static void main (String[] args) {
