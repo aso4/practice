@@ -14,15 +14,22 @@ public class Part1 {
         int atg, taa = 0;
         if (s.indexOf("ATG") > 0) {
             atg = s.indexOf("ATG");
-            System.out.println("found ATG: " + atg);
+            // System.out.println("found ATG: " + atg);
             if (s.indexOf("TAA") > atg + 3) {
-                taa = s.substring(atg, s.length()).indexOf("TAA");
-                System.out.println("substring: " + s.substring(atg, s.length()));
+                taa = s.substring(atg, s.length()).indexOf("TAA") + atg;
+                // System.out.println("substring: " + s.substring(atg, s.length()));
+                // System.out.println("taa: " + taa);
                 // System.out.println("found TAA: " + taa);
                 if ((atg + taa) % 3 == 0) {
-                    results = s.substring(atg, taa);
+                    results = s.substring(atg, taa + 3);
+                } else {
+                    results = "Not a valid string";
                 }
+            } else {
+                results = "No TAA";
             }
+        } else {
+            results = "No ATG";
         }
         return results;
     }
@@ -33,6 +40,10 @@ public class Part1 {
     }
 
     public void testFindSimpleGene() {
-        findSimpleGene("QWERTYATGATAA");
+        System.out.println("test 1: " + findSimpleGene("QWERTYATAA"));
+        System.out.println("test 2: " + findSimpleGene("QWERTYATGA"));
+        System.out.println("test 3: " + findSimpleGene("QWERTYA"));
+        System.out.println("test 4: " + findSimpleGene("QWERTYATGATAA"));
+        System.out.println("test 5: " + findSimpleGene("QWERTYATGACTATATAA"));
     }
 }
