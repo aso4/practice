@@ -23,7 +23,7 @@ class MyBook : Book {
 
     public MyBook(String title, String author, int price) : base(title, author) {
         this.price = price;
-        base(title, author);
+        // base.this(title, author);
     }
     
     public override void display() {
