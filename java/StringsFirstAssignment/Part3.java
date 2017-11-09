@@ -29,6 +29,18 @@ public class Part3 {
         return false;
     }
 
+    public String lastPart(String stringa, String stringb) {
+        String result = stringb;
+        // System.out.println("stringb.indexOf(stringa): " + stringb.indexOf(stringa));
+        // System.out.println("check: " + new String("abctesttest").indexOf(new String("test")));
+        if (stringb.indexOf(stringa) > -1) {
+            int index = stringb.indexOf(stringa);
+            result = stringb.substring(index + stringa.length(), stringb.length());
+        }
+
+        return "The part of the string after " + stringa + " in " + stringb + " is " + result;
+    }
+
     public static void main (String[] args) {
         Part3 test = new Part3();
     }
@@ -38,6 +50,8 @@ public class Part3 {
         System.out.println("test 2: " + twoOccurrences("a", "banana"));
         System.out.println("test 3: " + twoOccurrences("atg", "ctgtatgta"));
         //System.out.println("test 4: " + twoOccurrences("QWERTYATGATAA","QW"));
-        //System.out.println("test 5: " + twoOccurrences("QWERTYATGACTATATAA","QW"));
+        //System.out.println("test 5: " + twoOccurrences("QWERTYATGACTATATAA","QW"));\
+        System.out.println("test 4: " + lastPart("an", "banana"));
+        System.out.println("test 5: " + lastPart("zoo", "forest"));
     }
 }
