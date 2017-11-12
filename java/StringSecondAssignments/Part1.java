@@ -57,13 +57,26 @@ public class Part1 {
         System.out.println(findGene("ATGTATTAG") + " TAG working");
         System.out.println(findGene("ATGTATTGA") + " TGA working");
         System.out.println(findGene("AAATGTATTGA") + " AA subtracted");
-        System.out.println(findGene("AGTATGTGATTGA") + " not a valid gene");
+        System.out.println(findGene("AGTATGTGATTGA") + " start and stop codons only");
         System.out.println(findGene("TAATGTATTAA") + " TAA subtracted");
+        System.out.println(findGene("GTATTAAGTGA") + " not a valid gene");
     }
 
     public void printAllGenes(String dna) {
         while (true) {
-            System.out.println(dna);
+            if (findGene(dna).length() != 0) {
+                String temp = findGene(dna);
+                int tempIndex = dna.indexOf(temp);
+                System.out.println(temp);
+                dna = dna.substring(tempIndex + temp.length());
+            } else {
+                break;
+            }
+            System.out.println("remaining dna: " + dna);
         }
+    }
+
+    public void testPrintAllGenes() {
+        printAllGenes("ATGTATTAGATGTATTAGATGTATTAG");
     }
 }
