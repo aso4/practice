@@ -170,12 +170,15 @@ public class Part1 {
                 longestGene = s;
             }
         }
-        System.out.println("count > 60: " + count);
-        System.out.println("longest gene: " + longestGene);
+        System.out.println("bigger than 60: " + count);
+        System.out.println("cg ratio count > 0.35: " + cgRatioCount);
+        System.out.println("longest gene: " + longestGene + ". length: " + longestGene.length());
     }
 
     public void testProcessGenes() {
-        FileResource fr = new FileResource("brca1line.fa");
+        // FileResource fr = new FileResource("brca1line.fa");
+        // http://www.cs.duke.edu/~rodger/GRch38dnapart.fa
+        FileResource fr = new FileResource("GRch38dnapart.fa");
         String dna = fr.asString().toUpperCase();
         StorageResource genes = getAllGenes(dna);
 
@@ -184,7 +187,8 @@ public class Part1 {
             // genes.add(gene);
         }
 
+        // System.out.println("size: " + genes.size());
         processGenes(genes);
-
+        System.out.println("ctg count: " + countCTG(dna));
     }
 }
