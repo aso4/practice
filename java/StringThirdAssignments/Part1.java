@@ -25,23 +25,21 @@ public class Part1 {
             return "";
         } else {
             atgIndex = dna.indexOf("ATG");
-            int temp = atgIndex;
+            int temp = atgIndex + 3;
             while(true) {
                 taaIndex = findStopCodon(dna, temp, "TAA");
                 tagIndex = findStopCodon(dna, temp, "TAG");
                 tgaIndex = findStopCodon(dna, temp, "TGA");
-                if (taaIndex != dna.length() || tagIndex != dna.length() || tgaIndex != dna.length()) {
+                if (taaIndex != dna.length()) {
                     break;
-                    //return dna.substring(atgIndex, taaIndex + 3);
                 } else if (tagIndex != dna.length()) {
                     break;
-                    // return dna.substring(atgIndex, tagIndex + 3);
                 } else if (tgaIndex != dna.length()) {
-                    // return dna.substring(atgIndex, tgaIndex + 3);
+                    break;
                 } else if (temp > dna.length()) {
                     break;
                 }
-                temp++;
+                temp += 3;
             }
             if (taaIndex != dna.length()) {
                 return dna.substring(atgIndex, taaIndex + 3);
@@ -89,13 +87,13 @@ public class Part1 {
         StorageResource sr = new StorageResource();
 
         while (true) {
-            System.out.println("getallgenes");
+            // System.out.println("getallgenes");
             if (findGene(dna).length() != 0) {
                 String temp = findGene(dna);
                 int tempIndex = dna.indexOf(temp);
                 sr.add(temp);
                 dna = dna.substring(tempIndex + temp.length());
-                System.out.println("dna remaining: " + dna);
+                // System.out.println("dna remaining: " + dna);
             } else {
                 break;
             }
@@ -182,9 +180,11 @@ public class Part1 {
         StorageResource genes = getAllGenes(dna);
 
         for (String gene : genes.data()) {
-            System.out.println("adding gene: " + gene);
+            System.out.println("adding gene: " + gene + ". length: " + gene.length());
             // genes.add(gene);
         }
+
+        processGenes(genes);
 
     }
 }
