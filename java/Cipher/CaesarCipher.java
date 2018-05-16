@@ -1,9 +1,10 @@
 import java.util.Arrays;
 import edu.duke.FileResource;
+// test
 /**
  * Write a description of CaesarCipher here.
- * 
- * @author (your name) 
+ *
+ * @author (your name)
  * @version (a version number or a date)
  */
 public class CaesarCipher {
@@ -11,7 +12,7 @@ public class CaesarCipher {
         StringBuilder encrypted = new StringBuilder(input);
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
-        
+
         for (int i = 0; i < encrypted.length(); i++) {
             char currChar = encrypted.charAt(i);
             int idx = alphabet.indexOf(currChar);
@@ -22,10 +23,10 @@ public class CaesarCipher {
         }
         return encrypted.toString();
     }
-    
+
     public void testCaesar() {
         int key = 17;
-        
+
         FileResource fr = new FileResource();
         String message = fr.asString();
         String encrypted = encrypt(message, key);
