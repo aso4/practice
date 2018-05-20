@@ -50,23 +50,30 @@ public class CaesarCipher {
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String shiftedAlphabet1 = alphabet.substring(key1) + alphabet.substring(0, key1);
         String shiftedAlphabet2 = alphabet.substring(key2) + alphabet.substring(0, key2);
-        char newChar;
+        // System.out.println(shiftedAlphabet1 + " " + shiftedAlphabet2);
+        // System.out.println("01234567890123456789012345 01234567890123456789012345");
+
         for (int i = 0; i < encrypted.length(); i++) {
+            char newChar;
             char currChar = encrypted.charAt(i);
             int idx = alphabet.indexOf(Character.toUpperCase(currChar));
             boolean isLowerCase = Character.isLowerCase(currChar);
 
             if (idx != -1) {
-                if (idx % 2 == 0) {
-                    newChar = Character.toLowerCase(shiftedAlphabet2.charAt(idx));
+                if (i % 2 != 0) {
+                    newChar = shiftedAlphabet2.charAt(idx);
+                    // System.out.println("odd");
                 } else {
-                    newChar = Character.toLowerCase(shiftedAlphabet1.charAt(idx));
+                    newChar = shiftedAlphabet1.charAt(idx);
                 }
+
+                if (isLowerCase) {
+                    newChar = Character.toLowerCase(newChar);
+                    // System.out.println("currChar: " + currChar + " idx: " + idx + " newChar: " + newChar);
+                }
+                encrypted.setCharAt(i, newChar);
             }
-            if (isLowerCase) {
-                newChar = Character.toLowerCase(newChar);
-            }
-            encrypted.setCharAt(i, newChar);
+
         }
         return encrypted.toString();
     }
